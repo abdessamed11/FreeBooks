@@ -1,7 +1,9 @@
 using Infrastructure.Data;
+using Infrastructure.ViewModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,7 @@ namespace WebBook
             services.AddControllersWithViews();
             services.AddDbContext<FreeBookDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BookConnection")));
+            services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<FreeBookDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
